@@ -5,7 +5,9 @@ const PageNotFound = () => {
     <main className="flex flex-col">
       <div
         className="relative h-screen w-full bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/404.jpg')" }}
+        style={{
+          backgroundImage: "url('/images/notFound.jpg')"
+        }}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
         <div className="flex flex-col absolute inset-0 items-center justify-center gap-2">

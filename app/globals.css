@@ -6,9 +6,9 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Hide scrollbars for all elements */
+/*Hide scrollbars for all elements*/
 * {
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none; /*Firefox*/
   -ms-overflow-style: none; /* Internet Explorer 10+ */
 }
 
