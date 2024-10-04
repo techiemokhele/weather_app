@@ -1,0 +1,103 @@
+{
+  "city": {
+    "name": "Johannesburg",
+    "country": "ZA"
+  },
+  "list": [
+    {
+      "dt": 1631299200,
+      "main": {
+        "temp": 298.55,
+        "temp_min": 297.15,
+        "temp_max": 300.15,
+        "humidity": 65
+      },
+      "weather": [
+        {
+          "main": "Clouds",
+          "description": "broken clouds",
+          "icon": "04d"
+        }
+      ],
+      "wind": {
+        "speed": 3.6
+      }
+    },
+    {
+      "dt": 1631385600,
+      "main": {
+        "temp": 295.37,
+        "temp_min": 294.25,
+        "temp_max": 296.15,
+        "humidity": 72
+      },
+      "weather": [
+        {
+          "main": "Rain",
+          "description": "light rain",
+          "icon": "10d"
+        }
+      ],
+      "wind": {
+        "speed": 4.1
+      }
+    },
+    {
+      "dt": 1631472000,
+      "main": {
+        "temp": 292.65,
+        "temp_min": 291.15,
+        "temp_max": 294.35,
+        "humidity": 78
+      },
+      "weather": [
+        {
+          "main": "Rain",
+          "description": "moderate rain",
+          "icon": "10d"
+        }
+      ],
+      "wind": {
+        "speed": 3.9
+      }
+    },
+    {
+      "dt": 1631558400,
+      "main": {
+        "temp": 299.15,
+        "temp_min": 298.15,
+        "temp_max": 300.15,
+        "humidity": 60
+      },
+      "weather": [
+        {
+          "main": "Clear",
+          "description": "clear sky",
+          "icon": "01d"
+        }
+      ],
+      "wind": {
+        "speed": 5.0
+      }
+    },
+    {
+      "dt": 1631644800,
+      "main": {
+        "temp": 300.35,
+        "temp_min": 299.25,
+        "temp_max": 301.15,
+        "humidity": 58
+      },
+      "weather": [
+        {
+          "main": "Clouds",
+          "description": "few clouds",
+          "icon": "02d"
+        }
+      ],
+      "wind": {
+        "speed": 3.2
+      }
+    }
+  ]
+}
