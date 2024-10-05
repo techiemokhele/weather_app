@@ -24,3 +24,24 @@ export const formatDateTime = (
 
   return { time, dateString };
 };
+
+/**
+ * Format a given date string into a human-readable format.
+ *
+ * @param {string} dateString
+ * String representation of a date in the format
+ * 'YYYY-MM-DD'.
+ *
+ * @returns {string}
+ * A string containing the date in the format
+ * 'Weekday, Day Month'.
+ */
+export const formatDate = (dateString: string) => {
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: "long",
+    day: "numeric",
+    month: "short",
+  };
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat("en-US", options).format(date);
+};
