@@ -8,12 +8,15 @@ html {
 
 /*Hide scrollbars for all elements*/
 * {
-  scrollbar-width: none; /*Firefox*/
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  /*Firefox*/
+  scrollbar-width: none;
+
+  /* Internet Explorer 10+ */
+  -ms-overflow-style: none;
 }
 
+/* WebKit browsers like Chrome, Safari */
 *::-webkit-scrollbar {
-  /* WebKit browsers like Chrome, Safari */
   display: none;
 }
 
