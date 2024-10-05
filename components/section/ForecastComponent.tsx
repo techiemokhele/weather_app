@@ -6,7 +6,7 @@ const ForecastComponent = ({ dark, data }: ForecastComponentProps) => {
   return (
     <div
       className={`flex flex-col items-center justify-center pt-4 pb-2 rounded-[20px] shadow-lg
-      ${!dark ? "bg-dark-3 text-white" : "bg-dark-2 text-black"}
+      ${!dark ? "bg-dark-1 text-white" : "bg-dark-2 text-black"}
       `}
       style={{
         boxShadow: "10px 10px 2px rgba(0, 0, 0, 0.7)",
