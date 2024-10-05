@@ -30,6 +30,20 @@ export interface ForecastComponentProps {
   data: ForecastDataProps[];
 }
 
+export interface ForecastHourlyDataProps {
+  id: number;
+  time: string;
+  image: string;
+  temperature: string;
+  windIcon: string;
+  windSpeed: string;
+}
+
+export interface ForecastHourlyComponentProps {
+  dark: boolean;
+  data: ForecastHourlyDataProps[];
+}
+
 export interface ButtonComponentProps {
   text: string;
   type?: "button" | "submit" | "reset";

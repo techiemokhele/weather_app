@@ -7,7 +7,7 @@ const CurrentLocationTempInfoComponent = ({
   return (
     <div
       className={`flex flex-row justify-between py-2 px-8 gap-4 rounded-[20px] shadow-lg w-full
-      ${!dark ? "bg-dark-3 text-white" : "bg-dark-2 text-black"}
+      ${!dark ? "bg-dark-1 text-white" : "bg-dark-2 text-black"}
       `}
       style={{
         boxShadow: "10px 10px 2px rgba(0, 0, 0, 0.7)",
@@ -16,7 +16,15 @@ const CurrentLocationTempInfoComponent = ({
       {/* sunset and rise */}
       <div className="flex flex-col gap-4 lg:gap-3">
         <div className="flex flex-col leading-none">
-          <h1 className="font-extrabold text-[30px] md:text-[45px] lg:text-[60px]">
+          <h1
+            className={`font-extrabold text-[30px] md:text-[45px] lg:text-[60px] 
+            ${
+              !dark
+                ? "bg-gradient-to-r from-dark-2 to-dark-4 text-transparent bg-clip-text"
+                : "bg-gradient-to-r from-dark-4 to-dark-2 text-transparent bg-clip-text"
+            }
+            `}
+          >
             24℃
           </h1>
           <p className="font-normal flex items-center gap-1 text-xs md:text-md lg:text-lg">

@@ -1,9 +1,14 @@
 import { BottomSectionComponentProps } from "@/types";
+
 import forecastData from "@/data/fiveDayForecast.json";
+import forecastHourlyData from "@/data/hourlyForecast.json";
+
 import ForecastComponent from "./ForecastComponent";
+import CurrentDayHourlyForecastComponent from "./CurrentDayHourlyForecastComponent";
 
 const BottomSectionComponent = ({ dark }: BottomSectionComponentProps) => {
   const forecastDataItems = forecastData.forecast;
+  const forecastHourlyDataItems = forecastHourlyData.hourlyForecast;
 
   return (
     <section
@@ -15,7 +20,12 @@ const BottomSectionComponent = ({ dark }: BottomSectionComponentProps) => {
           <ForecastComponent dark={dark} data={forecastDataItems} />
         </div>
 
-        <div className="w-full"></div>
+        <div className="w-full">
+          <CurrentDayHourlyForecastComponent
+            dark={dark}
+            data={forecastHourlyDataItems}
+          />
+        </div>
       </div>
     </section>
   );
