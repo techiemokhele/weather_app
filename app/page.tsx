@@ -1,7 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { MiddleSectionComponent, TopBarComponent } from "@/components";
+import {
+  BottomSectionComponent,
+  MiddleSectionComponent,
+  TopBarComponent,
+} from "@/components";
 
 export default function WeatherApp() {
   const [dark, setDark] = useState<boolean>(false);
@@ -16,6 +20,7 @@ export default function WeatherApp() {
     >
       <TopBarComponent dark={dark} setDark={setDark} />
       <MiddleSectionComponent dark={dark} />
+      <BottomSectionComponent dark={dark} />
     </div>
   );
 }
