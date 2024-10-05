@@ -19,6 +19,7 @@ const LocationSearchComponent = ({ dark }: LocationSearchComponentProps) => {
         className="w-4 h-auto object-cover"
       />
       <input
+        id="search"
         type="text"
         placeholder="Search for your preferred city..."
         className={`w-full p-2 rounded-full text-md lg:text-lg ${

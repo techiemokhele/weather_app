@@ -69,14 +69,14 @@ const CurrentLocationTempInfoComponent = ({
       </div>
 
       {/* current temp */}
-      <div className="flex flex-col items-center justify-center gap-2">
+      <div className="flex flex-col items-center justify-center gap-4">
         <Image
           priority
           src="/icons/clear.png"
           alt="sunny-icon"
           width={1000}
           height={1000}
-          className="w-36 h-36 object-cover"
+          className="w-28 h-28 md:w-36 md:h-36 lg:w-36 lg:h-36 object-cover"
         />
         <p className="font-bold text-lg md:text-xl lg:text-2xl">Sunny</p>
       </div>
