@@ -31,7 +31,7 @@ body {
   font-family: var(--font-geist-sans), sans-serif;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(to right, var(--background-gray), #000); 
-  transition: background 0.5s ease, color 0.5s ease;
+  transition: background 0.8s ease, color 0.8s ease;
 }
 
 /* Dark mode styles */
