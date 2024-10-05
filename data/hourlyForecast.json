@@ -1,0 +1,44 @@
+{
+  "hourlyForecast": [
+    {
+      "id": 1,
+      "time": "12:00:00",
+      "image": "/icons/clear.png",
+      "temperature": "26℃",
+      "windIcon": "/icons/navigation.png",
+      "windSpeed": "3km/h"
+    },
+    {
+      "id": 2,
+      "time": "15:00:00",
+      "image": "/icons/clear.png",
+      "temperature": "27℃",
+      "windIcon": "/icons/navigation.png",
+      "windSpeed": "2km/h"
+    },
+    {
+      "id": 3,
+      "time": "18:00:00",
+      "image": "/icons/clouds.png",
+      "temperature": "27℃",
+      "windIcon": "/icons/navigation.png",
+      "windSpeed": "2km/h"
+    },
+    {
+      "id": 4,
+      "time": "21:00:00",
+      "image": "/icons/clouds.png",
+      "temperature": "25℃",
+      "windIcon": "/icons/navigation.png",
+      "windSpeed": "3km/h"
+    },
+    {
+      "id": 5,
+      "time": "00:00:00",
+      "image": "/icons/clear.png",
+      "temperature": "22℃",
+      "windIcon": "/icons/navigation.png",
+      "windSpeed": "3km/h"
+    }
+  ]
+}

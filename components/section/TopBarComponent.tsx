@@ -12,7 +12,7 @@ const TopBarComponent = ({ dark, setDark }: TopBarComponentProps) => {
   };
 
   return (
-    <section id="top" className="container mx-auto py-8 px-4">
+    <section id="top" className="container mx-auto pt-4 pb-0 px-4">
       <div className="flex justify-between items-center mb-6 gap-3">
         <div className="w-1/4">
           <ToggleModeComponent dark={dark} setDark={setDark} />
