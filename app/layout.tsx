@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: "Neo Mokhele | Weather App",
   description: "Get the best weather report in South Africa",
   icons: {
-    icon: "/icons/partly-cloudy.svg",
+    icon: "/icons/logo.svg",
   },
 };
 
@@ -28,7 +28,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-ZA" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="en-ZA"
+      className={`${geistSans.variable} ${geistMono.variable}`}
+    >
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
