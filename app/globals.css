@@ -6,40 +6,38 @@ html {
   scroll-behavior: smooth;
 }
 
-/*Hide scrollbars for all elements*/
+/* Hide scrollbars for all elements */
 * {
-  scrollbar-width: none; /*Firefox*/
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  /* Firefox */
+  scrollbar-width: none;
+
+  /* Internet Explorer 10+ */
+  -ms-overflow-style: none;
 }
 
+/* WebKit browsers like Chrome, Safari */
 *::-webkit-scrollbar {
-  /* WebKit browsers like Chrome, Safari */
   display: none;
 }
 
 :root {
   --font-geist-sans: var(--font-geist-sans);
   --font-geist-mono: var(--font-geist-mono);
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --foreground-rgb: 255, 255, 255;
+  --background-gray: #444444; 
 }
 
 body {
   font-family: var(--font-geist-sans), sans-serif;
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: linear-gradient(to right, var(--background-gray), #000); 
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(to right, var(--background-gray), #000); 
+    color: #fff; 
+  }
 }
