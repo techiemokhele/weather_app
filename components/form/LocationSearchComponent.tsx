@@ -4,7 +4,7 @@ import { LocationSearchComponentProps } from "@/types";
 const LocationSearchComponent = ({ dark }: LocationSearchComponentProps) => {
   return (
     <div
-      className={`flex flex-row items-center relative w-full gap-2 rounded-full pl-3 shadow-md  ${
+      className={`flex flex-row items-center relative w-full gap-1 rounded-full pl-3 shadow-md ${
         !dark
           ? "bg-dark-1 border-0 shadow-gray-500/50"
           : "bg-gray-300 border-[1px] border-black shadow-gray-700/50"
