@@ -1,26 +1,22 @@
-"use client";
-
-import { useState } from "react";
+import { ToggleModeComponentProps } from "@/types";
 import { GoDotFill } from "react-icons/go";
 
-const ToggleModeComponent = () => {
-  const [dark, setDark] = useState<boolean>(false);
-
+const ToggleModeComponent = ({ dark, setDark }: ToggleModeComponentProps) => {
   const handleToggle = () => {
-    setDark(!dark);
+    setDark((prev) => !prev);
   };
 
   return (
-    <div className="flex flex-col items-center text-white text-[10px] md:text-md lg:text-lg gap-1">
+    <div className="flex flex-col items-center text-[10px] md:text-md lg:text-lg gap-1">
       <div
         onClick={handleToggle}
-        className={`flex items-center bg-gray-500 rounded-full w-16 h-5 px-1 ${
-          dark ? "justify-start" : "justify-end"
+        className={`flex items-center rounded-full w-16 h-6 bg-gray-300 ${
+          dark ? "justify-start border-[1px] border-black" : "justify-end border-0"
         }`}
       >
-        <GoDotFill size={22} color="#000" />
+        <GoDotFill size={26} color="#000" />
       </div>
-      <p className="font-bold">{!dark ? "Dark" : "Light"} Mode</p>
+      <p className={`font-bold ${!dark ? "text-white": "text-black"}`}>{!dark ? "Dark" : "Light"} Mode</p>
     </div>
   );
 };
