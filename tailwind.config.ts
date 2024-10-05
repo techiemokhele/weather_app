@@ -16,7 +16,7 @@ const config: Config = {
           2: "#D9D9D9",
           3: "#2e2e2e",
           4: "#3b3b3b",
-          5: "#373636"
+          5: "#373636",
         },
         purple: {
           1: "#3F3B7D",
@@ -27,6 +27,10 @@ const config: Config = {
           2: "#FCC79C",
         },
       },
+      rotate: {
+        '30': '30deg',
+        '-30': '-30deg',
+      }
     },
   },
   plugins: [],

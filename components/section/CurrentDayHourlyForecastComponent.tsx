@@ -46,7 +46,13 @@ const CurrentDayHourlyForecastComponent = ({
               alt="Wind Icon"
               width={20}
               height={20}
-              className="object-cover"
+              className={`object-cover ${
+                item.time === "15:00:00"
+                  ? "transform -rotate-30"
+                  : item.time === "21:00:00"
+                  ? "transform rotate-30"
+                  : ""
+              }`}
             />
             <p className="text-sm font-bold">{item.windSpeed}</p>
           </div>
