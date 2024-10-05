@@ -10,8 +10,8 @@ export default function WeatherApp() {
     <div
       className={`min-h-screen ${
         !dark
-          ? "bg-gradient-to-r from-[#444444] to-black text-white"
-          : "bg-gradient-to-r from-[#D9D9D9] to-[#444444] text-black"
+          ? "bg-gradient-to-r from-dark-1 to-black text-white"
+          : "bg-gradient-to-r from-dark-2 to-dark-1 text-black"
       }`}
     >
       <TopBarComponent dark={dark} setDark={setDark} />
