@@ -1,14 +1,43 @@
-import { BottomSectionComponentProps } from "@/types";
-
-import forecastData from "@/data/fiveDayForecast.json";
-import forecastHourlyData from "@/data/hourlyForecast.json";
+import { useEffect, useState } from "react";
 
 import ForecastComponent from "./ForecastComponent";
 import CurrentDayHourlyForecastComponent from "./CurrentDayHourlyForecastComponent";
+import { BottomSectionComponentProps, WeatherData } from "@/types";
+
+const API_KEY = process.env.NEXT_PUBLIC_OPEN_WEATHER_MAP_API_KEY;
+const CITY_NAME = "Springs";
 
 const BottomSectionComponent = ({ dark }: BottomSectionComponentProps) => {
-  const forecastDataItems = forecastData.forecast;
-  const forecastHourlyDataItems = forecastHourlyData.hourlyForecast;
+  const [forecastData, setForecastData] = useState([]);
+  const [forecastHourlyData, setForecastHourlyData] = useState([]);
+
+  const getWeatherForecast = async () => {
+    try {
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${CITY_NAME}&appid=${API_KEY}`
+      );
+      const data = await response.json();
+
+      console.log("weather data: ", response);
+
+      if (response.ok) {
+        const dailyForecast = data.list.filter((item: WeatherData) =>
+          item.dt_txt.includes("12:00:00")
+        );
+        const hourlyForecast = data.list.slice(0, 5); // Next 5 hours
+        setForecastData(dailyForecast);
+        setForecastHourlyData(hourlyForecast);
+      } else {
+        console.error(`Error: ${data.message}`);
+      }
+    } catch (error) {
+      console.error("Error fetching weather forecast:", error);
+    }
+  };
+
+  useEffect(() => {
+    getWeatherForecast();
+  }, []);
 
   return (
     <section
@@ -17,13 +46,13 @@ const BottomSectionComponent = ({ dark }: BottomSectionComponentProps) => {
     >
       <div className="flex flex-col md:flex-row lg:flex-row justify-between mb-6 gap-8 w-full">
         <div className="w-full md:w-2/4 lg:w-2/4">
-          <ForecastComponent dark={dark} data={forecastDataItems} />
+          <ForecastComponent dark={dark} data={forecastData} />
         </div>
 
         <div className="w-full">
           <CurrentDayHourlyForecastComponent
             dark={dark}
-            data={forecastHourlyDataItems}
+            data={forecastHourlyData}
           />
         </div>
       </div>

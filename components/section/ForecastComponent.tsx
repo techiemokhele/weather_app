@@ -16,20 +16,20 @@ const ForecastComponent = ({ dark, data }: ForecastComponentProps) => {
         5 Day Forecast:
       </h1>
 
-      {data.map((item) => (
+      {data.map((item, index) => (
         <div
-          key={item.id}
-          className="flex flex-row items-center justify-between gap-6 font-bold"
+          key={index}
+           className="flex flex-row items-center justify-between gap-6 font-bold"
         >
           <Image
-            src={item.image}
-            alt={`Weather for ${item.day}`}
+            src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
+            alt={`Weather for ${item.dt_txt}`}
             width={1000}
             height={1000}
             className="w-10 h-10 object-cover"
           />
-          <p className="text-md">{item.temperature}</p>
-          <p className="text-sm">{formatDate(item.day)}</p>
+          <p className="text-md">{Math.round(item.main.temp - 273.15)}°C</p>
+          <p className="text-sm">{formatDate(item.dt_txt)}</p>
         </div>
       ))}
     </div>

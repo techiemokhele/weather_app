@@ -19,42 +19,39 @@ const CurrentDayHourlyForecastComponent = ({
       </h1>
 
       <div className="flex gap-3 justify-center items-center w-full overflow-x-auto">
-        {data.map((item) => (
+        {data.map((item, index) => (
           <div
-            key={item.id}
+            key={index}
             className={`flex flex-col items-center justify-center gap-1 rounded-[20px] px-4 py-2 shadow-md ${
               !dark
                 ? "bg-dark-5"
-                : item.time >= "18:00:00"
+                : item.dt_txt.includes("18:00:00")
                 ? "bg-gradient-to-b from-purple-1 to-purple-2"
                 : "bg-gradient-to-b from-amber-1 to-amber-2"
             }`}
           >
-            <p className="font-bold text-lg">{item.time.slice(0, 5)}</p>
+            <p className="font-bold text-lg">{item.dt_txt.slice(11, 16)}</p>
             <Image
-              src={item.image}
+              src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
               alt="Weather Icon"
               width={40}
               height={40}
               className="object-cover"
             />
             <p className="text-xs md:text-sm lg:text-md font-semibold">
-              {item.temperature}
+              {Math.round(item.main.temp - 273.15)}°C
             </p>
             <Image
-              src={item.windIcon}
+              src="/icons/navigation.png"
               alt="Wind Icon"
               width={20}
               height={20}
-              className={`object-cover ${
-                item.time === "15:00:00"
-                  ? "transform -rotate-30"
-                  : item.time === "21:00:00"
-                  ? "transform rotate-30"
-                  : ""
-              }`}
+              className="object-cover"
+              style={{
+                transform: `rotate(${item.wind.deg ?? 0}deg)`,
+              }}
             />
-            <p className="text-sm font-bold">{item.windSpeed}</p>
+            <p className="text-sm font-bold">{item.wind.speed}km/h</p>
           </div>
         ))}
       </div>

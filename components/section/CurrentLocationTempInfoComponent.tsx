@@ -1,19 +1,53 @@
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { LocationSearchComponentProps } from "@/types";
+
+import { LocationSearchComponentProps, WeatherData } from "@/types";
+
+const API_KEY = process.env.NEXT_PUBLIC_OPEN_WEATHER_MAP_API_KEY;
+const CITY_NAME = "Springs";
 
 const CurrentLocationTempInfoComponent = ({
   dark,
 }: LocationSearchComponentProps) => {
+  const [currentWeather, setCurrentWeather] = useState<WeatherData | null>(
+    null
+  );
+
+  const getCurrentWeather = async () => {
+    try {
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${CITY_NAME}&units=metric&appid=${API_KEY}`
+      );
+      const data = await response.json();
+
+      if (response.ok) {
+        setCurrentWeather(data);
+      } else {
+        console.error(`Error: ${data.message}`);
+      }
+    } catch (error) {
+      console.error("Error fetching current weather:", error);
+    }
+  };
+
+  useEffect(() => {
+    getCurrentWeather();
+  }, []);
+
+  if (!currentWeather) {
+    return <p>Loading weather data...</p>;
+  }
+
   return (
     <div
-      className={`flex flex-row justify-between py-2 px-8 gap-4 rounded-[20px] shadow-lg w-full
+      className={`flex flex-row justify-between pt-2 pb-4 px-8 gap-4 rounded-[20px] shadow-lg w-full
       ${!dark ? "bg-dark-1 text-white" : "bg-dark-2 text-black"}
       `}
       style={{
         boxShadow: "10px 10px 2px rgba(0, 0, 0, 0.7)",
       }}
     >
-      {/* sunset and rise */}
+      {/* Temperature Section */}
       <div className="flex flex-col gap-4 lg:gap-3">
         <div className="flex flex-col leading-none">
           <h1
@@ -25,16 +59,17 @@ const CurrentLocationTempInfoComponent = ({
             }
             `}
           >
-            24℃
+            {Math.round(currentWeather.main.temp)}℃
           </h1>
-          <p className="font-normal flex items-center gap-1 text-xs md:text-md lg:text-lg">
+          <p className="font-normal flex items-center gap-1 text-[10px] md:text-xs lg:text-lg">
             Feels like:{" "}
             <span className="font-bold text-lg md:text-xl lg:text-2xl">
-              22℃
+              {Math.round(currentWeather.main.feels_like)}℃
             </span>
           </p>
         </div>
 
+        {/* Sunrise and Sunset */}
         <div className="flex flex-col gap-6 lg:gap-4">
           <div className="flex flex-row items-center gap-2">
             <Image
@@ -47,10 +82,17 @@ const CurrentLocationTempInfoComponent = ({
                 dark ? "filter invert" : ""
               }`}
             />
-            <div className="flex flex-col gap-1 items-center leading-none">
-              <p className="font-bold text-sm md:text-md lg:text-lg">Sunrise</p>
-              <p className="font-normal text-[10px] md:text-sm lg:text-m">
-                06:37 AM
+            <div className="flex flex-col gap-1 md:gap-0 lg:gap-0 items-center leading-none">
+              <p className="font-bold text-xs md:text-md lg:text-lg">Sunrise</p>
+              <p className="font-normal text-[10px] md:text-sm lg:text-m uppercase text-center">
+                {new Date(currentWeather.sys.sunrise * 1000).toLocaleTimeString(
+                  [],
+                  {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: true,
+                  }
+                )}
               </p>
             </div>
           </div>
@@ -66,30 +108,39 @@ const CurrentLocationTempInfoComponent = ({
                 dark ? "filter invert" : ""
               }`}
             />
-            <div className="flex flex-col gap-1 items-center leading-none">
-              <p className="font-bold text-sm md:text-md lg:text-lg">Sunset</p>
-              <p className="font-normal text-[10px] md:text-sm lg:text-md">
-                18:37 PM
+            <div className="flex flex-col gap-1 md:gap-0 lg:gap-0 items-center leading-none">
+              <p className="font-bold text-xs md:text-md lg:text-lg">Sunset</p>
+              <p className="font-normal text-[10px] md:text-sm lg:text-md uppercase text-center">
+                {new Date(currentWeather.sys.sunset * 1000).toLocaleTimeString(
+                  [],
+                  {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: true,
+                  }
+                )}
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* current temp */}
+      {/* Weather Icon and Condition */}
       <div className="flex flex-col items-center justify-center gap-4">
         <Image
           priority
-          src="/icons/clear.png"
-          alt="sunny-icon"
+          src={`https://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@2x.png`}
+          alt="weather-icon"
           width={1000}
           height={1000}
           className="w-28 h-28 md:w-36 md:h-36 lg:w-36 lg:h-36 object-cover"
         />
-        <p className="font-bold text-lg md:text-xl lg:text-2xl">Sunny</p>
+        <p className="font-bold text-lg md:text-xl lg:text-2xl text-center">
+          {currentWeather.weather[0].description}
+        </p>
       </div>
 
-      {/* temperature */}
+      {/* Other Weather Data */}
       <div className="flex flex-col justify-center gap-6">
         <div className="flex flex-row gap-4 md:gap-6 lg:gap-8 justify-between">
           <div className="flex flex-col items-center gap-2 w-full">
@@ -103,7 +154,9 @@ const CurrentLocationTempInfoComponent = ({
                 dark ? "filter invert" : ""
               }`}
             />
-            <p className="font-semibold text-sm">41%</p>
+            <p className="font-semibold text-xs lg:text-sm text-center">
+              {currentWeather.main.humidity}%
+            </p>
             <p className="font-normal text-[10px] md:text-sm lg:text-md">
               Humidity
             </p>
@@ -120,7 +173,9 @@ const CurrentLocationTempInfoComponent = ({
                 dark ? "filter invert" : ""
               }`}
             />
-            <p className="font-semibold text-sm">2km/h</p>
+            <p className="font-semibold text-xs lg:text-sm text-center">
+              {currentWeather.wind.speed}km/h
+            </p>
             <p className="font-normal text-[10px] md:text-sm lg:text-md">
               Wind
             </p>
@@ -139,7 +194,9 @@ const CurrentLocationTempInfoComponent = ({
                 dark ? "filter invert" : ""
               }`}
             />
-            <p className="font-semibold text-sm">997hPa</p>
+            <p className="font-semibold text-xs lg:text-sm text-center">
+              {currentWeather.main.pressure}hPa
+            </p>
             <p className="font-normal text-[10px] md:text-sm lg:text-md">
               Pressure
             </p>
@@ -156,7 +213,9 @@ const CurrentLocationTempInfoComponent = ({
                 dark ? "filter invert" : ""
               }`}
             />
-            <p className="font-semibold text-sm">8</p>
+            <p className="font-semibold text-xs lg:text-sm text-center">
+              {currentWeather.uvi || 8}
+            </p>
             <p className="font-normal text-[10px] md:text-sm lg:text-md">UV</p>
           </div>
         </div>

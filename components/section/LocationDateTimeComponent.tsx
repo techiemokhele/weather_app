@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { LocationSearchComponentProps } from "@/types";
 import { useLocation } from "@/hooks/useLocation";
@@ -13,8 +12,16 @@ const LocationDateTimeComponent = ({ dark }: LocationSearchComponentProps) => {
   } | null>(null);
 
   useEffect(() => {
-    const now = new Date();
-    setDateTime(formatDateTime(now));
+    const updateDateTime = () => {
+      const now = new Date();
+      setDateTime(formatDateTime(now));
+    };
+
+    updateDateTime();
+
+    const intervalId = setInterval(updateDateTime, 1000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
@@ -29,7 +36,6 @@ const LocationDateTimeComponent = ({ dark }: LocationSearchComponentProps) => {
       <h1 className="font-bold text-xl lg:text-2xl mb-2 line-clamp-3">
         {error ? error : city || "Getting location..."}
       </h1>
-
       {dateTime && (
         <div className="flex flex-col items-center leading-none">
           <p className="text-[72px] font-extrabold tracking-tight">
