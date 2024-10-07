@@ -4,7 +4,9 @@ import { LocationSearchComponentProps } from "@/types";
 import { useLocation } from "@/hooks/useLocation";
 import { formatDateTime } from "@/utils/formatDate";
 
-const LocationDateTimeComponent = ({ dark }: LocationSearchComponentProps) => {
+const LocationDateTimeComponent = ({
+  dark,
+}: LocationSearchComponentProps) => {
   const { city, error } = useLocation();
   const [dateTime, setDateTime] = useState<{
     time: string;
