@@ -56,6 +56,8 @@ export interface WeatherData {
 
 export interface BottomSectionComponentProps {
   dark: boolean;
+  selectedCity: string;
+  onCitySelect?: (city: string) => void;
 }
 
 export interface ForecastComponentProps {

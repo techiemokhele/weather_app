@@ -29,7 +29,7 @@ export default function WeatherApp() {
         onCitySelect={handleCitySelect}
       />
       <MiddleSectionComponent dark={dark} city={selectedCity} onCitySelect={handleCitySelect} />
-      <BottomSectionComponent dark={dark} />
+      <BottomSectionComponent dark={dark} selectedCity={selectedCity} onCitySelect={handleCitySelect}/>
     </div>
   );
 }

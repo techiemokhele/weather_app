@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+
 import { LocationSearchComponentProps, WeatherData } from "@/types";
 
 const API_KEY = process.env.NEXT_PUBLIC_OPEN_WEATHER_MAP_API_KEY;
@@ -97,6 +98,7 @@ const CurrentLocationTempInfoComponent = ({
                     ).toLocaleTimeString([], {
                       hour: "2-digit",
                       minute: "2-digit",
+                      hour12: true,
                     })}
                   </p>
                 </div>
@@ -123,6 +125,7 @@ const CurrentLocationTempInfoComponent = ({
                     ).toLocaleTimeString([], {
                       hour: "2-digit",
                       minute: "2-digit",
+                      hour12: true,
                     })}
                   </p>
                 </div>
