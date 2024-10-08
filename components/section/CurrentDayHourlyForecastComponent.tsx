@@ -19,7 +19,7 @@ const CurrentDayHourlyForecastComponent = ({
       </h1>
 
       <div className="relative w-full">
-        <div className="flex gap-3 justify-start md:justify-center lg:justify-center items-center w-full overflow-x-auto pb-4 mx-0 px-4 sm:mx-0 sm:px-0">
+        <div className="flex gap-3 justify-start md:justify-center lg:justify-center items-center w-full overflow-x-auto pb-4 md:pb-1 lg:pb-1 mx-0 px-4 sm:mx-0 sm:px-0">
           {data.map((item, index) => (
             <div
               key={index}
