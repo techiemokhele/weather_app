@@ -40,7 +40,7 @@ const LocationDateTimeComponent = ({
       </h1>
       {dateTime && (
         <div className="flex flex-col items-center leading-none">
-          <p className="text-[60px] md:text-[72px] lg:text-[72px] font-extrabold tracking-tight">
+          <p className="text-[60px] md:text-[72px] lg:text-[72px] font-extrabold tracking-tight text-center">
             {dateTime.time}
           </p>
           <p className="text-sm font-normal mt-1 text-center">
