@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hey 👋 There! 
 
-## Getting Started
+## Welcome To The Weather Forecast App.
 
-First, run the development server:
+This is a 5-day weather forecast application built with Next.js, TypeScript, and Tailwind CSS. It follows a specific Figma design and uses real-world data from OpenWeatherMap and OpenCage APIs.
 
-```bash
+## Features
+
+- 5-day weather forecast
+- City search functionality
+- Responsive design
+- Real-time weather data including temperature, humidity, and wind speed
+- Weather condition icons
+- Dark/Light mode toggle
+
+## Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- Node.js (v14 or later)
+- npm or yarn
+- API keys for OpenWeatherMap and OpenCage (instructions below)
+
+## Installation
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/techiemokhele/weather_app.git
+   cd weather-forecast-app
+   ```
+
+2. Install the dependencies:
+   ```
+   npm install
+   # or
+   yarn install
+   ```
+
+3. Set up environment variables:
+   Create a `.env.local` file in the root directory and add the following:
+   ```
+   NEXT_PUBLIC_OPEN_WEATHER_MAP_API_KEY=your_openweathermap_api_key
+   NEXT_PUBLIC_OPENCAGE_API_KEY=your_opencage_api_key
+   ```
+
+## Running the Application
+
+To run the application in development mode:
+
+```
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## API Endpoints
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This application uses two main API endpoints:
 
-## Learn More
+1. OpenCage Geocoding API:
+   - Endpoint: `https://api.opencagedata.com/geocode/v1/json`
+   - Used for city search functionality
 
-To learn more about Next.js, take a look at the following resources:
+2. OpenWeatherMap API:
+   - Endpoint: `https://api.openweathermap.org/data/2.5/forecast`
+   - Used for fetching weather forecast data
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Obtaining API Keys
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### OpenWeatherMap API
 
-## Deploy on Vercel
+1. Go to [OpenWeatherMap](https://openweathermap.org/) and sign up for a free account.
+2. After logging in, go to your API keys section.
+3. Generate a new API key or use the default one provided.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### OpenCage API
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Visit [OpenCage](https://opencagedata.com/) and sign up for a free account.
+2. After logging in, navigate to your dashboard.
+3. You'll find your API key listed there.
+
+## Deployment
+
+This project is set up to be easily deployed on Vercel. To deploy:
+
+1. Push your code to a GitHub repository.
+2. Go to [Vercel](https://vercel.com/) and sign up or log in.
+3. Click "New Project" and select your GitHub repository.
+4. Vercel will automatically detect that it's a Next.js project.
+5. Add your environment variables (API keys) in the Vercel project settings.
+6. Deploy!
+
+## Contributing
+
+Contributions to this project are welcome. Please ensure to update tests as appropriate.
+
+## Project UI
+
+### Weather Info (Light mode)
+
+![Screenshot 2024-10-08 at 15 42 08](https://github.com/user-attachments/assets/a758a3fe-6de9-42bd-89b5-4059b46b4829)
+
+### Weather Info (Dark mode)
+
+![Screenshot 2024-10-08 at 15 41 58](https://github.com/user-attachments/assets/57a220f7-fdd4-4d10-8802-0c41620332e1)
+
+### Search City (Light mode)
+
+![Screenshot 2024-10-08 at 15 42 40](https://github.com/user-attachments/assets/4518b2e0-15e1-4afa-a6d9-ef2ad1c65765)
+
+### Search City (Light mode)
+
+![Screenshot 2024-10-08 at 15 42 49](https://github.com/user-attachments/assets/7db93ae9-991e-42ca-a130-06665854da15)
+
+### App In Action
+
+https://github.com/user-attachments/assets/05dc5de7-90e3-46c5-9391-11a72027539f
+
+
+
