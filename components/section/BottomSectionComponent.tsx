@@ -48,7 +48,7 @@ const BottomSectionComponent = ({
   return (
     <section
       id="bottom"
-      className="container mx-auto py-0 px-6 md:px-8 lg:px-16"
+      className="container mx-auto py-0 px-6 md:px-8 lg:px-14"
     >
       <div className="flex flex-col md:flex-row lg:flex-row justify-between mb-6 gap-8 w-full">
         <div className="w-full md:w-2/4 lg:w-2/4">

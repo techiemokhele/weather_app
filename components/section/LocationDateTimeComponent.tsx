@@ -35,7 +35,7 @@ const LocationDateTimeComponent = ({
         boxShadow: "10px 10px 2px rgba(0, 0, 0, 0.7)",
       }}
     >
-      <h1 className="font-bold text-xl lg:text-2xl mb-2 line-clamp-3">
+      <h1 className="font-bold text-2xl mb-2 line-clamp-3">
         {city ? city.split(",")[0] : "Getting location..."}
       </h1>
       {dateTime && (

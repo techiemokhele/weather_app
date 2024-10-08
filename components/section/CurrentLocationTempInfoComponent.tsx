@@ -143,7 +143,7 @@ const CurrentLocationTempInfoComponent = ({
               height={1000}
               className="w-20 h-20 md:w-36 md:h-36 lg:w-36 lg:h-36 object-cover"
             />
-            <p className="font-bold text-lg md:text-xl lg:text-2xl text-center">
+            <p className="font-bold text-lg lg:text-2xl text-center">
               {currentWeather.weather[0].description}
             </p>
           </div>

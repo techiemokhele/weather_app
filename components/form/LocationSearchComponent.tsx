@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import React, { useState, useEffect } from "react";
 import { LocationSearchComponentProps, WeatherData } from "@/types";
 
 const API_KEY = process.env.NEXT_PUBLIC_OPENCAGE_API_KEY;
@@ -46,6 +46,16 @@ const LocationSearchComponent = ({
     setCitySelected(false);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      if (suggestions.length > 0) {
+        handleSelect(suggestions[0]);
+      } else if (inputValue.trim() !== '') {
+        handleSelect(inputValue);
+      }
+    }
+  };
+
   return (
     <div className="relative w-full">
       <div
@@ -69,7 +79,8 @@ const LocationSearchComponent = ({
           placeholder="Search for your preferred city..."
           value={inputValue}
           onChange={handleInputChange}
-          className={`w-full p-2 rounded-full text-md lg:text-lg ${
+          onKeyDown={handleKeyDown}
+          className={`w-full p-2 rounded-full text-[10px] md:text-sm lg:text-md ${
             dark
               ? "bg-gray-300 text-black placeholder-gray-600"
               : "bg-dark-1 text-white placeholder-gray-300"
