@@ -5,16 +5,22 @@ import CurrentDayHourlyForecastComponent from "./CurrentDayHourlyForecastCompone
 import { BottomSectionComponentProps, WeatherData } from "@/types";
 
 const API_KEY = process.env.NEXT_PUBLIC_OPEN_WEATHER_MAP_API_KEY;
-const CITY_NAME = "Springs";
 
-const BottomSectionComponent = ({ dark }: BottomSectionComponentProps) => {
-  const [forecastData, setForecastData] = useState([]);
-  const [forecastHourlyData, setForecastHourlyData] = useState([]);
+const BottomSectionComponent = ({
+  dark,
+  selectedCity,
+}: BottomSectionComponentProps) => {
+  const [forecastData, setForecastData] = useState<WeatherData[]>([]);
+  const [forecastHourlyData, setForecastHourlyData] = useState<WeatherData[]>(
+    []
+  );
 
   const getWeatherForecast = async () => {
+    if (!selectedCity) return;
+
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${CITY_NAME}&appid=${API_KEY}`
+        `https://api.openweathermap.org/data/2.5/forecast?q=${selectedCity}&appid=${API_KEY}`
       );
       const data = await response.json();
 
@@ -37,12 +43,12 @@ const BottomSectionComponent = ({ dark }: BottomSectionComponentProps) => {
 
   useEffect(() => {
     getWeatherForecast();
-  }, []);
+  }, [selectedCity]);
 
   return (
     <section
       id="bottom"
-      className="container mx-auto py-0 px-6 md:px-8 lg:px-16"
+      className="container mx-auto py-0 px-6 md:px-8 lg:px-14"
     >
       <div className="flex flex-col md:flex-row lg:flex-row justify-between mb-6 gap-8 w-full">
         <div className="w-full md:w-2/4 lg:w-2/4">

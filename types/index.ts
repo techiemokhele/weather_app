@@ -1,8 +1,17 @@
 import { Dispatch, SetStateAction } from "react";
 
+export interface OpenCageResult {
+  formatted: string;
+}
+
+export interface OpenCageData {
+  results: OpenCageResult[];
+}
+
 export interface TopBarComponentProps {
   dark: boolean;
   setDark: Dispatch<SetStateAction<boolean>>;
+  onCitySelect: (city: string) => void;
 }
 
 export interface ToggleModeComponentProps {
@@ -12,11 +21,18 @@ export interface ToggleModeComponentProps {
 
 export interface LocationSearchComponentProps {
   dark: boolean;
+  city?: string | null;
+  onCitySelect?: (city: string) => void;
 }
 
 export interface WeatherData {
   uvi: number;
   dt_txt: string;
+  message: string;
+  temperature: number;
+  description: string;
+  icon: string;
+  formatted: string;
   main: {
     temp: number;
     feels_like: number;
@@ -40,6 +56,8 @@ export interface WeatherData {
 
 export interface BottomSectionComponentProps {
   dark: boolean;
+  selectedCity: string;
+  onCitySelect?: (city: string) => void;
 }
 
 export interface ForecastComponentProps {
@@ -50,6 +68,11 @@ export interface ForecastComponentProps {
 export interface ForecastHourlyComponentProps {
   dark: boolean;
   data: WeatherData[];
+}
+
+export interface CitySelectComponentProps {
+  dark: boolean;
+  onCitySelect: (city: string) => void;
 }
 
 export interface ButtonComponentProps {
