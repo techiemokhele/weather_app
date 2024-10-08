@@ -1,8 +1,17 @@
 import { Dispatch, SetStateAction } from "react";
 
+export interface OpenCageResult {
+  formatted: string;
+}
+
+export interface OpenCageData {
+  results: OpenCageResult[];
+}
+
 export interface TopBarComponentProps {
   dark: boolean;
   setDark: Dispatch<SetStateAction<boolean>>;
+  onCitySelect: (city: string) => void;
 }
 
 export interface ToggleModeComponentProps {
@@ -12,36 +21,58 @@ export interface ToggleModeComponentProps {
 
 export interface LocationSearchComponentProps {
   dark: boolean;
+  city?: string | null;
+  onCitySelect?: (city: string) => void;
+}
+
+export interface WeatherData {
+  uvi: number;
+  dt_txt: string;
+  message: string;
+  temperature: number;
+  description: string;
+  icon: string;
+  formatted: string;
+  main: {
+    temp: number;
+    feels_like: number;
+    humidity: number;
+    pressure: number;
+    uvi: number;
+  };
+  sys: {
+    sunrise: number;
+    sunset: number;
+  };
+  weather: {
+    description: string;
+    icon: string;
+  }[];
+  wind: {
+    speed: number;
+    deg: number;
+  };
 }
 
 export interface BottomSectionComponentProps {
   dark: boolean;
-}
-
-export interface ForecastDataProps {
-  id: number;
-  image: string;
-  temperature: string;
-  day: string;
+  selectedCity: string;
+  onCitySelect?: (city: string) => void;
 }
 
 export interface ForecastComponentProps {
   dark: boolean;
-  data: ForecastDataProps[];
-}
-
-export interface ForecastHourlyDataProps {
-  id: number;
-  time: string;
-  image: string;
-  temperature: string;
-  windIcon: string;
-  windSpeed: string;
+  data: WeatherData[];
 }
 
 export interface ForecastHourlyComponentProps {
   dark: boolean;
-  data: ForecastHourlyDataProps[];
+  data: WeatherData[];
+}
+
+export interface CitySelectComponentProps {
+  dark: boolean;
+  onCitySelect: (city: string) => void;
 }
 
 export interface ButtonComponentProps {
