@@ -95,3 +95,28 @@ This project is set up to be easily deployed on Vercel. To deploy:
 ## Contributing
 
 Contributions to this project are welcome. Please ensure to update tests as appropriate.
+
+## Project UI
+
+### Weather Info (Light mode)
+
+![Screenshot 2024-10-08 at 15 42 08](https://github.com/user-attachments/assets/a758a3fe-6de9-42bd-89b5-4059b46b4829)
+
+### Weather Info (Dark mode)
+
+![Screenshot 2024-10-08 at 15 41 58](https://github.com/user-attachments/assets/57a220f7-fdd4-4d10-8802-0c41620332e1)
+
+### Search City (Light mode)
+
+![Screenshot 2024-10-08 at 15 42 40](https://github.com/user-attachments/assets/4518b2e0-15e1-4afa-a6d9-ef2ad1c65765)
+
+### Search City (Light mode)
+
+![Screenshot 2024-10-08 at 15 42 49](https://github.com/user-attachments/assets/7db93ae9-991e-42ca-a130-06665854da15)
+
+### App In Action
+
+https://github.com/user-attachments/assets/05dc5de7-90e3-46c5-9391-11a72027539f
+
+
+
