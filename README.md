@@ -110,7 +110,7 @@ Contributions to this project are welcome. Please ensure to update tests as appr
 
 ![Screenshot 2024-10-08 at 15 42 40](https://github.com/user-attachments/assets/4518b2e0-15e1-4afa-a6d9-ef2ad1c65765)
 
-### Search City (Light mode)
+### Search City (Dark mode)
 
 ![Screenshot 2024-10-08 at 15 42 49](https://github.com/user-attachments/assets/7db93ae9-991e-42ca-a130-06665854da15)
 
