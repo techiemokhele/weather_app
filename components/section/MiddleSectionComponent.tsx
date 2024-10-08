@@ -1,4 +1,5 @@
 import { LocationSearchComponentProps } from "@/types";
+
 import LocationDateTimeComponent from "./LocationDateTimeComponent";
 import CurrentLocationTempInfoComponent from "./CurrentLocationTempInfoComponent";
 
@@ -13,7 +14,7 @@ const MiddleSectionComponent = ({
     >
       <div className="flex flex-col md:flex-row lg:flex-row justify-between mb-6 gap-8 w-full">
         <div className="w-full md:w-2/4 lg:w-2/4">
-          <LocationDateTimeComponent dark={dark} />
+          <LocationDateTimeComponent dark={dark} city={city} />
         </div>
 
         <div className="w-full">

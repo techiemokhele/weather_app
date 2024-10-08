@@ -9,7 +9,7 @@ import {
 
 export default function WeatherApp() {
   const [dark, setDark] = useState<boolean>(false);
-  const [selectedCity, setSelectedCity] = useState<string>("");
+  const [selectedCity, setSelectedCity] = useState<string>("Springs");
 
   const handleCitySelect = (city: string) => {
     setSelectedCity(city);

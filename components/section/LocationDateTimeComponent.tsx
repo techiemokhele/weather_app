@@ -1,13 +1,13 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { LocationSearchComponentProps } from "@/types";
-import { useLocation } from "@/hooks/useLocation";
 import { formatDateTime } from "@/utils/formatDate";
 
 const LocationDateTimeComponent = ({
   dark,
+  city,
 }: LocationSearchComponentProps) => {
-  const { city, error } = useLocation();
   const [dateTime, setDateTime] = useState<{
     time: string;
     dateString: string;
@@ -36,7 +36,7 @@ const LocationDateTimeComponent = ({
       }}
     >
       <h1 className="font-bold text-xl lg:text-2xl mb-2 line-clamp-3">
-        {error ? error : city || "Getting location..."}
+        {city ? city.split(",")[0] : "Getting location..."}
       </h1>
       {dateTime && (
         <div className="flex flex-col items-center leading-none">

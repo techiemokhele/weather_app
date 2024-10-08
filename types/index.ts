@@ -21,7 +21,7 @@ export interface ToggleModeComponentProps {
 
 export interface LocationSearchComponentProps {
   dark: boolean;
-  city?: string;
+  city?: string | null;
   onCitySelect?: (city: string) => void;
 }
 
