@@ -7,7 +7,7 @@ const ToggleModeComponent = ({ dark, setDark }: ToggleModeComponentProps) => {
   };
 
   return (
-    <div className="flex flex-col items-center text-[10px] md:text-md lg:text-lg gap-1">
+    <div className="flex flex-col items-center text-[10px] md:text-sm lg:text-md gap-1">
       <div
         onClick={handleToggle}
         className={`flex items-center rounded-full w-16 h-6 bg-gray-300 ${

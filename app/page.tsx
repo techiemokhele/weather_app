@@ -9,18 +9,27 @@ import {
 
 export default function WeatherApp() {
   const [dark, setDark] = useState<boolean>(false);
+  const [selectedCity, setSelectedCity] = useState<string>("Springs");
+
+  const handleCitySelect = (city: string) => {
+    setSelectedCity(city);
+  };
 
   return (
     <div
-      className={`flex flex-col gap-2 min-h-screen ${
-        !dark
-          ? "bg-gradient-to-r from-dark-1 to-black text-white"
-          : "bg-gradient-to-r from-dark-2 to-dark-1 text-black"
+      className={`flex flex-col min-h-screen ${
+        dark
+          ? "bg-gradient-to-r from-dark-2 to-dark-1 text-black"
+          : "bg-gradient-to-r from-dark-1 to-black text-white"
       }`}
     >
-      <TopBarComponent dark={dark} setDark={setDark} />
-      <MiddleSectionComponent dark={dark} />
-      <BottomSectionComponent dark={dark} />
+      <TopBarComponent
+        dark={dark}
+        setDark={setDark}
+        onCitySelect={handleCitySelect}
+      />
+      <MiddleSectionComponent dark={dark} city={selectedCity} onCitySelect={handleCitySelect} />
+      <BottomSectionComponent dark={dark} selectedCity={selectedCity} onCitySelect={handleCitySelect}/>
     </div>
   );
 }
