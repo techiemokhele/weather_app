@@ -112,6 +112,7 @@ const LocationSearchComponent = ({
           id="search"
           type="text"
           placeholder="Search for your preferred city..."
+          autoComplete="off"
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
@@ -125,7 +126,7 @@ const LocationSearchComponent = ({
       {suggestions.length > 0 && !citySelected && (
         <ul
           ref={listRef}
-          className={`absolute z-10 mt-1 w-full shadow-lg rounded-xl max-h-84 overflow-y-auto ${
+          className={`absolute z-10 mt-1 w-full shadow-lg rounded-xl max-h-60 overflow-y-auto ${
             !dark ? "bg-dark-1" : "bg-dark-2"
           }`}
         >
@@ -137,7 +138,13 @@ const LocationSearchComponent = ({
                 !dark
                   ? "hover:bg-dark-2 text-white hover:text-black"
                   : "hover:bg-dark-3 text-black hover:text-white"
-              } ${index === selectedIndex ? "bg-blue-500 text-white" : ""}`}
+              } ${
+                index === selectedIndex
+                  ? !dark
+                    ? "bg-dark-2 text-black"
+                    : "bg-dark-3 text-white"
+                  : ""
+              }`}
             >
               {city}
             </li>
