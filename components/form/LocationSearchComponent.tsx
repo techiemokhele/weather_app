@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { LocationSearchComponentProps, WeatherData } from "@/types";
 
 const API_KEY = process.env.NEXT_PUBLIC_OPENCAGE_API_KEY;
@@ -11,6 +11,9 @@ const LocationSearchComponent = ({
   const [inputValue, setInputValue] = useState<string>("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [citySelected, setCitySelected] = useState<boolean>(false);
+  const [selectedIndex, setSelectedIndex] = useState<number>(-1);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
     const fetchSuggestions = async () => {
@@ -18,7 +21,6 @@ const LocationSearchComponent = ({
         const response = await fetch(
           `https://api.opencagedata.com/geocode/v1/json?q=${inputValue}&key=${API_KEY}`
         );
-
         if (response.ok) {
           const data = await response.json();
           const placeNames = data.results.map(
@@ -30,7 +32,6 @@ const LocationSearchComponent = ({
         setSuggestions([]);
       }
     };
-
     fetchSuggestions();
   }, [inputValue, citySelected]);
 
@@ -39,22 +40,55 @@ const LocationSearchComponent = ({
     setSuggestions([]);
     setCitySelected(true);
     onCitySelect(city);
+    setSelectedIndex(-1);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
     setCitySelected(false);
+    setSelectedIndex(-1);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      if (suggestions.length > 0) {
-        handleSelect(suggestions[0]);
-      } else if (inputValue.trim() !== '') {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setSelectedIndex((prevIndex) =>
+        prevIndex < suggestions.length - 1 ? prevIndex + 1 : prevIndex
+      );
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setSelectedIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : -1));
+    } else if (e.key === "Enter") {
+      if (selectedIndex >= 0 && selectedIndex < suggestions.length) {
+        handleSelect(suggestions[selectedIndex]);
+      } else if (inputValue.trim() !== "") {
         handleSelect(inputValue);
       }
+    } else if (e.key === "Escape") {
+      setSuggestions([]);
+      setSelectedIndex(-1);
     }
   };
+
+  useEffect(() => {
+    if (listRef.current && selectedIndex >= 0) {
+      const listElement = listRef.current;
+      const selectedElement = listElement.children[
+        selectedIndex
+      ] as HTMLLIElement;
+
+      if (selectedElement) {
+        const listRect = listElement.getBoundingClientRect();
+        const selectedRect = selectedElement.getBoundingClientRect();
+
+        if (selectedRect.bottom > listRect.bottom) {
+          listElement.scrollTop += selectedRect.bottom - listRect.bottom;
+        } else if (selectedRect.top < listRect.top) {
+          listElement.scrollTop -= listRect.top - selectedRect.top;
+        }
+      }
+    }
+  }, [selectedIndex]);
 
   return (
     <div className="relative w-full">
@@ -74,6 +108,7 @@ const LocationSearchComponent = ({
           className="w-4 h-auto object-cover"
         />
         <input
+          ref={inputRef}
           id="search"
           type="text"
           placeholder="Search for your preferred city..."
@@ -87,14 +122,14 @@ const LocationSearchComponent = ({
           } placeholder-opacity-75 focus:outline-none focus:ring-0`}
         />
       </div>
-
       {suggestions.length > 0 && !citySelected && (
         <ul
-          className={`absolute z-10 mt-1 w-full shadow-lg rounded-xl  ${
+          ref={listRef}
+          className={`absolute z-10 mt-1 w-full shadow-lg rounded-xl max-h-84 overflow-y-auto ${
             !dark ? "bg-dark-1" : "bg-dark-2"
           }`}
         >
-          {suggestions.map((city) => (
+          {suggestions.map((city, index) => (
             <li
               key={city}
               onClick={() => handleSelect(city)}
@@ -102,7 +137,7 @@ const LocationSearchComponent = ({
                 !dark
                   ? "hover:bg-dark-2 text-white hover:text-black"
                   : "hover:bg-dark-3 text-black hover:text-white"
-              }`}
+              } ${index === selectedIndex ? "bg-blue-500 text-white" : ""}`}
             >
               {city}
             </li>
